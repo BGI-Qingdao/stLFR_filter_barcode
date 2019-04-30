@@ -23,9 +23,9 @@ close(IN_bf);
 $map{"0_0_0"}="-1000";
 
 $r1=$ARGV[0];
-$r1_f="$r1".".filter.gz";
+$r1_f="$r1".".filter.fq.gz";
 $r2=$ARGV[1];
-$r2_f="$r2".".filter.gz";
+$r2_f="$r2".".filter.fq.gz";
 $min=$ARGV[3];
 $max=$ARGV[4];
 
