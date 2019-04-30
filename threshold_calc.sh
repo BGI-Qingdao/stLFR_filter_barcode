@@ -5,6 +5,16 @@ if [[ $# != 3 ]] ; then
     echo "please check your parameters .exit ... "
     exit 1
 fi
+/threshold_calc.sh test_data/barcode.freq 1000 50 
+INFO : run with BarcodeFreq=test_data/barcode.freq GenomeSize=1000 ExpectCov=50 
+INFO : expect reads_pair=250
+INFO : total reads_pair=9176
+INFO : delete barcode with too much reads : big_pair=26
+RESULT : high threshold is 500 and low threshold is 2
+RESULT : delete 26 from barcodes that contain reads-pair > 500.
+RESULT : delete 9150 from barcodes that contain reads-pair < 2.
+RESULT : left 0 reads = 0 cov
+Done ...
 
 BarcodeFreq=$1
 GenomeSize=$2
@@ -37,7 +47,7 @@ fi
 
 BIG=500
 BigPair=`awk 'BEGIN{a=0;}{if($2>$BIG) { a=a+$3;} } END {print a; }'  <$TMP`
-echo "INFO : delete barcode with too mush reads : big_pair=$BigPair"
+echo "INFO : delete barcode with too much reads : big_pair=$BigPair"
 
 LeftPair=$((TotalPair-BigPair))
 if [[ $LeftPair -lt $ExpectReadPair ]] ; then 
