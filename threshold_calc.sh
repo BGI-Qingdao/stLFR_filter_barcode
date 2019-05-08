@@ -36,8 +36,8 @@ if [[ $TotalPair -lt $ExpectReadPair ]] ; then
 fi
 
 BIG=500
-echo "BEGIN{a=0;}{if(\$2>$BIG) { a=a+\$3;} } END {print a; }" >tmp.awk
-BigPair=`awk -f tmp.awk <$TMP`
+echo "BEGIN{a=0;}{if(\$2>$BIG) { a=a+\$3;} } END {print a; }" >tmp.awk1
+BigPair=`awk -f tmp.awk1 <$TMP`
 echo "INFO : delete barcode with too much reads : big_pair=$BigPair"
 
 LeftPair=$((TotalPair-BigPair))
@@ -50,7 +50,7 @@ fi
 
 NeedCut=$((LeftPair-ExpectReadPair))
 echo "INFO : LowPair need delete $NeedCut"
-echo "BEGIN{prev=""}{if( \$4 > $NeedCut) { print prev;} else { prev = \$0; }  }" >tmp.awk
+echo "BEGIN{prev=\"\";}{if( \$4 > $NeedCut) { print prev;} else { prev = \$0; }  }" >tmp.awk
 awk  -f tmp.awk  <$TMP | head -n  1  1>tmp.low.result
 LOW=`awk '{print $2}' <tmp.low.result`
 Low_the_pair=`awk '{print $3}' <tmp.low.result`
@@ -60,5 +60,5 @@ NowLeftPair=$((LeftPair- LowPair))
 echo "RESULT : high threshold is $BIG and low threshold is $((LOW+1))"
 echo "RESULT : delete $BigPair from barcodes that contain reads-pair > $BIG."
 echo "RESULT : delete $LowPair from barcodes that contain reads-pair < $((LOW+1))."
-echo "RESULT : left $NowLeftPair reads = $((NowLeftPair/GenomeSize)) cov"
+echo "RESULT : left $NowLeftPair reads = $((NowLeftPair*200/GenomeSize)) cov"
 echo "Done ..."
