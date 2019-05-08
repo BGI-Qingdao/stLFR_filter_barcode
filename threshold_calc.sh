@@ -31,7 +31,7 @@ TotalPair=`awk 'BEGIN{a=0;}{a=a+$3;}END{print a;}' <$TMP`
 echo "INFO : total reads_pair=$TotalPair"
 
 if [[ $TotalPair -lt $ExpectReadPair ]] ; then 
-    echo "FATAL : total < expect !! do not need filtering !!! exit ..."
+    echo "FATAL : total < expect !! filtering is unnecessary!!! exit ..."
     exit 1
 fi
 
