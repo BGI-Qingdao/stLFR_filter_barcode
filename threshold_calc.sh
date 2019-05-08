@@ -60,5 +60,5 @@ NowLeftPair=$((LeftPair- LowPair))
 echo "RESULT : high threshold is $BIG and low threshold is $((LOW+1))"
 echo "RESULT : delete $BigPair from barcodes that contain reads-pair > $BIG."
 echo "RESULT : delete $LowPair from barcodes that contain reads-pair < $((LOW+1))."
-echo "RESULT : left $NowLeftPair reads = $((NowLeftPair/GenomeSize)) cov"
+echo "RESULT : left $NowLeftPair reads = $((NowLeftPair*200/GenomeSize)) cov"
 echo "Done ..."
