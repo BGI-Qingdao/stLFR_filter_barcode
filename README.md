@@ -2,13 +2,13 @@
 
 This is a tool suit to filter " not so good " barcodes from stLFR reads.
 
-The " not so good " barcodes refer to those who contain "too little" or "too much " read pairs.
+The " not so good " barcodes refer to those who contain "too few" or "too many " read pairs.
 
 ## Usage 
 
 ### threshold_calc.sh
 
-threshold_calc is used to calculate the two threshold that define "too little" and "too much ".
+threshold_calc is used to calculate the two threshold that define "too few" and "too many ".
 
 Used it like :
 
@@ -23,17 +23,17 @@ Example :
 INFO : run with BarcodeFreq=test_data/barcode.freq GenomeSize=1000 ExpectCov=50 
 INFO : expect reads_pair=250
 INFO : total reads_pair=9176
-INFO : delete barcode with too mush reads : big_pair=26
+INFO : delete barcode with too many reads : big_pair=26
 RESULT : high threshold is 500 and low threshold is 2
 RESULT : delete 26 from barcodes that contain reads-pair > 500.
 RESULT : delete 9150 from barcodes that contain reads-pair < 2.
-RESULT : left 0 reads = 0 cov
+RESULT : left 50000 reads = 50 cov
 Done ...
 ```
 
 ###  merge_barcode.pl
 
-After known the thresholds , it's time to filter the reads with thresholds.
+As threshold is known, it's time to filter the reads with threshold.
 
 Use it like :
 ```
