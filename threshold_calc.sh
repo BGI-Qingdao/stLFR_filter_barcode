@@ -31,14 +31,14 @@ TotalPair=`awk 'BEGIN{a=0;}{a=a+$3;}END{print a;}' <$TMP`
 echo "INFO : total reads_pair=$TotalPair"
 
 if [[ $TotalPair -lt $ExpectReadPair ]] ; then 
-    echo "FATAL : total < expect !! no need for filter !!! exit ..."
+    echo "FATAL : total < expect !! do not need filtering !!! exit ..."
     exit 1
 fi
 
 BIG=500
 echo "BEGIN{a=0;}{if(\$2>$BIG) { a=a+\$3;} } END {print a; }" >tmp.awk1
 BigPair=`awk -f tmp.awk1 <$TMP`
-echo "INFO : delete barcode with too much reads : big_pair=$BigPair"
+echo "INFO : delete barcode with too many reads : big_pair=$BigPair"
 
 LeftPair=$((TotalPair-BigPair))
 if [[ $LeftPair -lt $ExpectReadPair ]] ; then 
