@@ -48,7 +48,8 @@ if [[ $LeftPair -lt $ExpectReadPair ]] ; then
 fi
 
 NeedCut=$((LeftPair-ExpectReadPair))
-echo "{if( \$4 > $NeedCut) { print \$0;} }" >tmp.awk
+echo "INFO : LowPair need delete $NeedCut"
+echo "BEGIN{prev=""}{if( \$4 > $NeedCut) { print prev;} else { prev = \$0; }  }" >tmp.awk
 awk  -f tmp.awk  <$TMP | head -n  1  1>tmp.low.result
 LOW=`awk '{print $2}' <tmp.low.result`
 Low_the_pair=`awk '{print $3}' <tmp.low.result`
