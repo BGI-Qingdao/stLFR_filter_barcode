@@ -35,7 +35,7 @@ if [[ $TotalPair -lt $ExpectReadPair ]] ; then
     exit 1
 fi
 
-BIG=300
+BIG=500
 echo "BEGIN{a=0;}{if(\$2>$BIG) { a=a+\$3;} } END {print a; }" >tmp.awk
 BigPair=`awk -f tmp.awk <$TMP`
 echo "INFO : delete barcode with too much reads : big_pair=$BigPair"
