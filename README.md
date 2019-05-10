@@ -31,13 +31,13 @@ RESULT : left 50000 reads = 50 cov
 Done ...
 ```
 
-###  merge_barcode.pl
+###  filter_barcode.pl
 
 As threshold is known, it's time to filter the reads with threshold.
 
 Use it like :
 ```
-merge_barcode.pl r1.gz r2.gz barcode.freq min max
+filter_barcode.pl r1.gz r2.gz barcode.freq min max
 ```
 Example :
 
