@@ -69,8 +69,8 @@ while(<IN_r1>)
 close(IN_r1);
 close(OUT_r1);
 
-open IN_r2 ,  "gzip -dc $r1 | " or die "failed to open $r1 for read !!";
-open OUT_r2 , "| gzip >$r2_f" or die "failed to write $r1_f";
+open IN_r2 ,  "gzip -dc $r2 | " or die "failed to open $r2 for read !!";
+open OUT_r2 , "| gzip >$r2_f" or die "failed to write $r2_f";
 $line_num=0;
 
 while(<IN_r2>)
